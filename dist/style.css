@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300|Open+Sans:300');
+
+* {
+  padding: 0;
+  border: 0;
+  outline: 0;
+  overflow-x: hidden;
+}
+html, body {
+  width:100%;
+  height:100%;
+  background-color: #EEE;
+  font-family:'Open Sans';
+}
+body {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.title {
+  font-family: 'Lato', sans-serif;
+  color:#333;
+}
+#action {
+  border: 2px solid #AAA;
+  padding: 10px;
+  border-radius:9px;
+  background-color: #EEE;
+  text-align: center;
+    font-family:'Open Sans';
+}
+.deleteButton {
+  background-color:#777;
+  padding:5px 10px;
+}
+button {
+  font-family:'Open Sans';
+  background-color:#333;
+  padding: 10px 15px;
+  border-radius: 9px;
+  transition:all 0.2s ease-in;
+  margin: 5px;
+  color:#EEE;
+}
+button:hover {
+  border-radius:3px;
+  background-color:#222;
+}
+.crossed {
+  text-decoration:line-through;
+}
+ul {
+  text-align: left;
+}
+.example-enter {
+  opacity: 0.01;
+}
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.example-leave {
+  opacity: 1;
+}
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
