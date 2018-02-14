@@ -15,7 +15,7 @@ html, body {
 body {
   display:flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   text-align: center;
 }
 .title {
@@ -28,11 +28,13 @@ body {
   border-radius:9px;
   background-color: #EEE;
   text-align: center;
-    font-family:'Open Sans';
+  font-family:'Open Sans';
+  width:70%;
 }
 .deleteButton {
   background-color:#777;
   padding:5px 10px;
+  float:right;
 }
 button {
   font-family:'Open Sans';
@@ -46,24 +48,42 @@ button {
 button:hover {
   border-radius:3px;
   background-color:#222;
+  cursor:pointer;
 }
-.crossed {
+.changeBack {
+  background-color:#696969;
+}
+li .crossed {
   text-decoration:line-through;
 }
 ul {
   text-align: left;
 }
-.example-enter {
+li {
+  background-color:#d6d6d6;
+  padding: 5px 10px;
+  margin:5px 10px;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow:0 0 6px 3px #b3b0b0;
+  transition:background-color 80ms ease-in-out;
+}
+label {
+  float:left;
+}
+li:hover {
+  cursor:pointer;
+}
+.opac-enter {
   opacity: 0.01;
 }
-.example-enter.example-enter-active {
+.opac-enter.opac-enter-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
+  transition: opacity 120ms ease-in;
 }
-.example-leave {
+.opac-leave {
   opacity: 1;
 }
-.example-leave.example-leave-active {
+.opac-leave.opac-leave-active {
   opacity: 0.01;
-  transition: opacity 300ms ease-in;
+  transition: opacity 100ms ease-in;
 }

@@ -1,70 +1,55 @@
 import React from 'react';
-import VisibleTodoList from './VisibleTodoList';
+import TodoBoardComponent from './TodoBoardComponent';
 
 export default class TodoApp extends React.Component {
   constructor(props) {
     super(props);
     this.visibilityFilters = ["ALL_TODOS", "REMAINING_TODOS", "COMPLETED_TODOS"];
     this.state = {
-      todos: this.props.dataInterface.getAllTodos(),
+      boards: this.props.dataInterface.getAllBoards(),
       visibilityFilter: "ALL_TODOS"
     };
   }
-
-  addTodo = () => {
-    if (this._todoInputField.value) {
-      this.props.dataInterface.addTodo(this._todoInputField.value);
-      this.setState({todos: this.props.dataInterface.getAllTodos()});
-      this._todoInputField.value = '';
+  addBoard = () => {
+    if (this._boardInputField.value) {
+      this.props.dataInterface.addBoard(this._boardInputField.value);
+      this.setState({boards: this.props.dataInterface.getAllBoards()});
+      this._boardInputField.value = '';
     }
   }
-
-  archiveToggleTodo = e => {
-    this.props.dataInterface.archiveToggleTodo(e.target.dataset.id);
-    this.setState({todos: this.props.dataInterface.getAllTodos()});
-  }
-
-  removeTodo = e => {
-    this.props.dataInterface.removeTodo(e.target.dataset.id);
-    this.setState({todos: this.props.dataInterface.getAllTodos()});
-  }
-
   changeVisibilityFilter = e => {
-        this.setState({visibilityFilter: e.target.dataset.id});
-    }
-
-  visibleTodos = () => {
-    switch (this.state.visibilityFilter) {
-      case "ALL_TODOS":
-        return this.state.todos;
-      case "REMAINING_TODOS":
-        return this.state.todos.filter(todo => todo.isDone === false);
-      case "COMPLETED_TODOS":
-        return this.state.todos.filter(todo => todo.isDone === true);
-      default:
-        return this.state.todos;
-    }
+      this.setState({visibilityFilter: e.target.dataset.id});
   }
-
+  addTodo = (boardId, input) => {
+      this.props.dataInterface.addTodo(boardId, input);
+      this.setState({
+        boards: this.props.dataInterface.getAllBoards()
+      });
+      console.log(this.props.dataInterface.getBoardTodos(boardId));
+  }
+  removeTodo = (boardId, e) => {
+    this.props.dataInterface.removeTodo(boardId, e.target.dataset.id);
+    this.setState({
+      boards: this.props.dataInterface.getAllBoards()
+    });
+  }
+  archiveToggleTodo = (boardId, e) => {
+    this.props.dataInterface.archiveToggleTodo(boardId, e.target.dataset.id);
+    this.setState({
+      boards: this.props.dataInterface.getAllBoards()
+    });
+  }
   render() {
-    let visibleTodos = this.visibleTodos();
-
     return (
       <div className="container">
         <h1 className="title"> APHSAI'S TODO LIST </h1>
         <input
           id = "action"
           type = "text"
-          placeholder = "What would you like to do?"
-          ref = {(c => this._todoInputField = c)}
+          placeholder = "Create a Board"
+          ref = {(c => this._boardInputField = c)}
         />
-        <button onClick={this.addTodo}> Add Todo </button>
-        <VisibleTodoList
-          visibleTodos = {visibleTodos}
-          visibilityFilter = {this.state.visibilityFilter}
-          archiveToggleTodo = {this.archiveToggleTodo}
-          removeTodo = {this.removeTodo}
-        />
+        <button onClick={this.addBoard}> Add Board </button>
         <div>
           {
             this.visibilityFilters.map(
@@ -73,11 +58,27 @@ export default class TodoApp extends React.Component {
                 key={visibilityFilter}
                 onClick={this.changeVisibilityFilter}
                 data-id={visibilityFilter}>
-                  {visibilityFilter.replace("_", " ")}
+                {visibilityFilter.replace("_", " ")}
               </button>
             )
           }
         </div>
+        {
+          this.state.boards.map(
+            (board) =>
+            <TodoBoardComponent
+              visibilityFilter = {this.state.visibilityFilter}
+              boardId = {board.id}
+              key = {board.id}
+              todos = {board.todos}
+              getBoardTodos = {this.props.dataInterface.getBoardTodos}
+              addTodo = {this.addTodo}
+              removeTodo = {this.props.dataInterface.removeTodo}
+              archiveToggleTodo = {this.props.dataInterface.archiveToggleTodo}
+              title = {board.title}
+            />
+          )
+        }
       </div>
     );
   }
