@@ -6,33 +6,47 @@
   outline: 0;
   overflow-x: hidden;
 }
+html {
+      overflow-y: scroll;
+}
 html, body {
   width:100%;
-  height:100%;
   background-color: #EEE;
   font-family:'Open Sans';
-}
-body {
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
 }
 .title {
   font-family: 'Lato', sans-serif;
   color:#333;
 }
-#action {
+input {
   border: 2px solid #AAA;
   padding: 10px;
   border-radius:9px;
   background-color: #EEE;
   text-align: center;
-    font-family:'Open Sans';
+  font-family:'Open Sans';
+}
+h3 {
+  word-wrap: break-word;
+}
+.action {
+  width:70%;
+}
+.todoInput {
+  width:80%;
+}
+.addTodoButton {
+  width:10%;
+}
+label {
+  margin-right:auto;
+  cursor:pointer;
 }
 .deleteButton {
   background-color:#777;
   padding:5px 10px;
+  align-self: flex-end;
+  display:inline-block;
 }
 button {
   font-family:'Open Sans';
@@ -46,24 +60,56 @@ button {
 button:hover {
   border-radius:3px;
   background-color:#222;
+  cursor:pointer;
 }
-.crossed {
+li .crossed {
   text-decoration:line-through;
 }
 ul {
   text-align: left;
 }
-.example-enter {
-  opacity: 0.01;
+li {
+  padding: 5px 10px;
+  margin:5px 10px;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow:0 0 6px 3px #b3b0b0;
+  transition:background-color 80ms ease-in-out;
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  cursor:pointer;
 }
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
+#boardContainer {
+  display:flex;
+  width: 70%;
+  flex-wrap:wrap;
 }
-.example-leave {
-  opacity: 1;
+.container {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  width:100%;
 }
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+.optionContainer {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+}
+.listContainer {
+  width:30%;
+  overflow:auto;
+}
+.colorPicker {
+  position:absolute;
+}
+.todoContainer {
+  width:100%;
+}
+.addBoard {
+  width:40%;
 }
