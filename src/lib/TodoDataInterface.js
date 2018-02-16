@@ -10,6 +10,12 @@ export default class TodoDataInterface {
     this.boards.push(newBoard);
     return newBoard;
   }
+  removeBoard(boardId) {
+    const boardIndex = findIndex(this.boards, (board) => board.id === boardId);
+    if (boardIndex > -1) {
+      this.boards.splice(boardIndex, 1);
+    }
+  }
   addTodo(boardId, descriptionText) {
     const boardIndex = findIndex(this.boards, (board) => board.id === boardId);
     const newTodo = new Todo (descriptionText);

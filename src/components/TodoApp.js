@@ -17,6 +17,10 @@ export default class TodoApp extends React.Component {
       this._boardInputField.value = '';
     }
   }
+  removeBoard = e => {
+    this.props.dataInterface.removeBoard(e.target.dataset.id);
+    this.setState({boards: this.props.dataInterface.getAllBoards()});
+  }
   changeVisibilityFilter = e => {
       this.setState({visibilityFilter: e.target.dataset.id});
   }
@@ -46,7 +50,7 @@ export default class TodoApp extends React.Component {
         <div className="addBoard">
         <h1 className="title"> APHSAI'S TODO LIST </h1>
         <input
-          id = "action"
+          className = "action"
           type = "text"
           placeholder = "Create a Board"
           ref = {(c => this._boardInputField = c)}
@@ -76,6 +80,7 @@ export default class TodoApp extends React.Component {
               boardId = {board.id}
               key = {board.id}
               todos = {board.todos}
+              removeBoard = {this.removeBoard}
               getBoardTodos = {this.props.dataInterface.getBoardTodos}
               addTodo = {this.addTodo}
               removeTodo = {this.removeTodo}

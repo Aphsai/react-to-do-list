@@ -10,6 +10,8 @@ export default class VisibleTodoList extends React.Component {
               {
                 this.props.visibleTodos.map(
                 (todo) => <SingleTodo
+                  color = {this.props.color}
+                  textColor = {this.props.textColor}
                   key = {todo.id}
                   todoId = {todo.id}
                   text = {todo.descriptionText}

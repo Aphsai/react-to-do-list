@@ -30,6 +30,7 @@
     "lodash": "^4.17.5",
     "react": "^16.2.0",
     "react-animate-height": "^0.10.9",
+    "react-color": "^2.13.8",
     "react-dom": "^16.2.0",
     "react-transition-group": "^1.2.1"
   }

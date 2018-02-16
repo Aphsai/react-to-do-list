@@ -1,9 +1,15 @@
 import React from 'react'
 import VisibleTodoList from './VisibleTodoList'
+import { BlockPicker } from 'react-color'
 
 export default class TodoBoardComponent extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      color : '#d6d6d6',
+      textColor : 'rgba(0, 0, 0, 1)',
+      displaySketch : false
+    }
   }
   addTodo = () => {
     if (this._todoInputField.value) {
@@ -12,6 +18,8 @@ export default class TodoBoardComponent extends React.Component {
     }
   }
   archiveToggleTodo = e => {
+    e.stopPropagation();
+    e.preventDefault();
     this.props.archiveToggleTodo(this.props.boardId, e);
   }
   removeTodo = e => {
@@ -29,20 +37,51 @@ export default class TodoBoardComponent extends React.Component {
         return this.props.todos;
     }
   }
+  toggleSketch = () => {
+    this.setState({
+      displaySketch : !this.state.displaySketch
+    });
+  }
+  displaySketch = () => {
+    if (this.state.displaySketch)
+      return 'block'
+    return 'none'
+  }
+  handleChange = (color, event) => {
+    this.setState ({
+      color: color.hex
+    });
+    color.rgb.r = 255 - color.rgb.r;
+    color.rgb.g = 255 - color.rgb.g;
+    color.rgb.b = 255 - color.rgb.b;
+    this.setState ({
+      textColor : 'rgba(' + color.rgb.r + ',' + color.rgb.g + ',' + color.rgb.b + ', 1)'
+    });
+  }
   render () {
     let visibleTodos = this.visibleTodos();
       return (
-        <div>
-          <h3> {this.props.title} </h3>
+        <div className="listContainer">
+          <h3> {this.props.title}           <button className="deleteButton"
+                      data-id={this.props.boardId}
+                      onClick={this.props.removeBoard}> X </button></h3>
           <input
-            id = "action"
+            className = "todoInput"
             type = "text"
             placeholder = "Create a Todo"
             ref = {(c => this._todoInputField = c)}
           />
-          <button onClick={this.addTodo}> Add Todo </button>
+          <button onClick={this.addTodo} className="addTodoButton"> + </button>
+          <button onClick={this.toggleSketch}> Change Colour </button>
+          <div className="colorPicker" style={{display:this.displaySketch()}}>
+            <BlockPicker
+              onChange={this.handleChange}
+            />
+          </div>
         { visibleTodos &&
             <VisibleTodoList
+              color = {this.state.color}
+              textColor = {this.state.textColor}
               title = {this.props.title}
               visibleTodos = {visibleTodos}
               archiveToggleTodo = {this.archiveToggleTodo}
