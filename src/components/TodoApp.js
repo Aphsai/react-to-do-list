@@ -64,7 +64,7 @@ export default class TodoApp extends React.Component {
                 key={visibilityFilter}
                 onClick={this.changeVisibilityFilter}
                 data-id={visibilityFilter}>
-                {visibilityFilter.replace("_", " ")}
+                {visibilityFilter.replace("_TODOS", "")}
               </button>
             )
           }

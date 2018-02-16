@@ -26,6 +26,9 @@ input {
   text-align: center;
   font-family:'Open Sans';
 }
+h3 {
+  word-wrap: break-word;
+}
 .action {
   width:70%;
 }

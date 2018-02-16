@@ -1,6 +1,6 @@
 import React from 'react'
 import VisibleTodoList from './VisibleTodoList'
-import { BlockPicker } from 'react-color'
+import { GithubPicker } from 'react-color'
 
 export default class TodoBoardComponent extends React.Component {
   constructor(props) {
@@ -57,14 +57,17 @@ export default class TodoBoardComponent extends React.Component {
     this.setState ({
       textColor : 'rgba(' + color.rgb.r + ',' + color.rgb.g + ',' + color.rgb.b + ', 1)'
     });
+    this.toggleSketch();
   }
   render () {
     let visibleTodos = this.visibleTodos();
       return (
         <div className="listContainer">
-          <h3> {this.props.title}           <button className="deleteButton"
+          <h3> {this.props.title}
+            <button className="deleteButton"
                       data-id={this.props.boardId}
-                      onClick={this.props.removeBoard}> X </button></h3>
+                      onClick={this.props.removeBoard}> X </button>
+          </h3>
           <input
             className = "todoInput"
             type = "text"
@@ -74,8 +77,9 @@ export default class TodoBoardComponent extends React.Component {
           <button onClick={this.addTodo} className="addTodoButton"> + </button>
           <button onClick={this.toggleSketch}> Change Colour </button>
           <div className="colorPicker" style={{display:this.displaySketch()}}>
-            <BlockPicker
+            <GithubPicker
               onChange={this.handleChange}
+              triangle='hide'
             />
           </div>
         { visibleTodos &&

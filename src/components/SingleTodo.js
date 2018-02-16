@@ -12,7 +12,7 @@ export default class SingleTodo extends React.Component {
       <li className={this.props.isDone? "changeBack":""}
           data-id={this.props.todoId}
           checked={this.props.isDone}
-          onMouseDown={this.props.archiveToggleTodo}
+          onClick={this.props.archiveToggleTodo}
           style={{backgroundColor:this.handleColor()}}>
         <label className={this.props.isDone? "crossed":"open"}
             data-id={this.props.todoId}
