@@ -11,6 +11,12 @@ export default class TodoBoardComponent extends React.Component {
       this._todoInputField.value = '';
     }
   }
+  archiveToggleTodo = e => {
+    this.props.archiveToggleTodo(this.props.boardId, e);
+  }
+  removeTodo = e => {
+    this.props.removeTodo(this.props.boardId, e);
+  }
   visibleTodos = () => {
     switch (this.props.visibilityFilter) {
       case "ALL_TODOS":
@@ -25,9 +31,9 @@ export default class TodoBoardComponent extends React.Component {
   }
   render () {
     let visibleTodos = this.visibleTodos();
-    console.log("VISIBLE TODOS: " + this.visibleTodos());
       return (
         <div>
+          <h3> {this.props.title} </h3>
           <input
             id = "action"
             type = "text"
@@ -37,10 +43,11 @@ export default class TodoBoardComponent extends React.Component {
           <button onClick={this.addTodo}> Add Todo </button>
         { visibleTodos &&
             <VisibleTodoList
+              title = {this.props.title}
               visibleTodos = {visibleTodos}
-              archiveToggleTodo = {this.props.archiveToggleTodo}
+              archiveToggleTodo = {this.archiveToggleTodo}
               visibilityFilter = {this.props.visibilityFilter}
-              removeTodo = {this.props.removeTodo}
+              removeTodo = {this.removeTodo}
             />
         }
         </div>

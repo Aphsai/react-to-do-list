@@ -6,7 +6,6 @@ export default class VisibleTodoList extends React.Component {
   render() {
     return (
       <div className="todoContainer">
-        <h3> {this.props.visibilityFilter.replace("_TODOS", " ")} </h3>
             <ul>
               {
                 this.props.visibleTodos.map(

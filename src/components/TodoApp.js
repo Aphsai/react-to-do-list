@@ -42,6 +42,8 @@ export default class TodoApp extends React.Component {
   render() {
     return (
       <div className="container">
+        <div className="optionContainer">
+        <div className="addBoard">
         <h1 className="title"> APHSAI'S TODO LIST </h1>
         <input
           id = "action"
@@ -63,6 +65,9 @@ export default class TodoApp extends React.Component {
             )
           }
         </div>
+        </div>
+      </div>
+        <div id="boardContainer">
         {
           this.state.boards.map(
             (board) =>
@@ -73,12 +78,13 @@ export default class TodoApp extends React.Component {
               todos = {board.todos}
               getBoardTodos = {this.props.dataInterface.getBoardTodos}
               addTodo = {this.addTodo}
-              removeTodo = {this.props.dataInterface.removeTodo}
-              archiveToggleTodo = {this.props.dataInterface.archiveToggleTodo}
+              removeTodo = {this.removeTodo}
+              archiveToggleTodo = {this.archiveToggleTodo}
               title = {board.title}
             />
           )
         }
+        </div>
       </div>
     );
   }

@@ -12,12 +12,6 @@ html, body {
   background-color: #EEE;
   font-family:'Open Sans';
 }
-body {
-  display:flex;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: center;
-}
 .title {
   font-family: 'Lato', sans-serif;
   color:#333;
@@ -31,10 +25,14 @@ body {
   font-family:'Open Sans';
   width:70%;
 }
+label {
+  margin-right:auto;
+}
 .deleteButton {
   background-color:#777;
   padding:5px 10px;
-  float:right;
+  align-self: flex-end;
+  display:inline-block;
 }
 button {
   font-family:'Open Sans';
@@ -66,24 +64,34 @@ li {
   border-radius: 5px 5px 5px 5px;
   box-shadow:0 0 6px 3px #b3b0b0;
   transition:background-color 80ms ease-in-out;
-}
-label {
-  float:left;
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
 }
 li:hover {
   cursor:pointer;
 }
-.opac-enter {
-  opacity: 0.01;
+#boardContainer {
+  display:flex;
+  width: 70%;
+  flex-wrap:wrap;
 }
-.opac-enter.opac-enter-active {
-  opacity: 1;
-  transition: opacity 120ms ease-in;
+.container {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  width:100%;
 }
-.opac-leave {
-  opacity: 1;
+.optionContainer {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
 }
-.opac-leave.opac-leave-active {
-  opacity: 0.01;
-  transition: opacity 100ms ease-in;
+.addBoard {
+  width:40%;
 }
